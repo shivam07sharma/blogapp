@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import './App.css'
 import Blog from './components/Blog'
 import { BlogData } from './MyContext.js'
-import { createBrowserRouter } from 'react-router-dom'
+import { NavLink , createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import FullBlogPost from './components/FullBlog'
 function App() {
@@ -29,7 +29,7 @@ function App() {
       element:<><Homepage/></>
     },
     {
-      path:"/FullBlog",
+      path:"/FullBlog/:slug",
       element:<><FullBlogPost/></>
 
     }
@@ -46,12 +46,13 @@ function App() {
 }
 const Homepage = () => {
   const blogs=useContext(BlogData);
+
   return (
     <>
     <div className='fullscreen'>
     <div className='homepage'>
     {blogs.map(blog=>(
-      <Blog key={blog.id} image={blog.image} title={blog.title} content={blog.content[0]} author={blog.author.name}/>)
+    <NavLink to={`/FullBlog/${blog.id}`}> <Blog key={blog.id} image={blog.image} title={blog.title} content={blog.content[0]} author={blog.author.name}/></NavLink> )
   )
 } 
  </div> </div>

@@ -15,7 +15,7 @@ body{
     margin: 0px auto;
     padding: 30px 0px;
     background-color: white;
-    height: 100vh;
+    height: max-content;
     display: flex;
     flex-direction: column;
     gap:30px;
@@ -50,4 +50,11 @@ body{
 .content{
     width: 100%;
     margin: 10px 0px;
+}
+.authorname{
+    width: 85%;
+    margin: 10px auto;
+    font-size: 1.6rem;
+    font-weight: 600;
+
 }

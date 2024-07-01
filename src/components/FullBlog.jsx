@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import { BlogData } from '../MyContext'
-import './FullBlog.css'
+import './FullBlog.css';
+import { useParams } from 'react-router-dom';
 const FullBlogPost = () => {
-  const [Blog,setBlog] = useState(useContext(BlogData));
+  const Blog=[...useContext(BlogData)]
+  const {blogId}=useParams();
+  const fullpost = Blog.find(blog => blog.id === blogId);
   return (
     <>
       <div className="fullscreen">
         <div className="blog-cont">
-          <div className="image-container"><img src={Blog[0].image} alt="" className='blogimage' /></div>
-          <div className="title">{Blog[0].title}</div>
+          <div className="image-container"><img src={`${fullpost.image}`} alt="" className='blogimage' /></div>
+          <div className="title">{fullpost.title}</div>
           <div className="contents">
           {
-            Blog[0].content.map(element => (
+            fullpost.content.map(element => (
               <div className="content">{element}</div>
             ))
           }
          </div>
+         <div className="authorname">{fullpost.author.name}</div>
         </div>
       </div>
     </>
