@@ -6,12 +6,13 @@ import { NavLink , createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import FullBlogPost from './components/FullBlog'
 function App() {
+  
   const [blogs, setBlogs] = useState([]);
   
- useEffect(()=>{
-  const fetchData = async () => {
-    try {
-      let response = await fetch('http://localhost:3000/');
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        let response = await fetch('http://localhost:3000/');
       let data = await response.json();
       console.log(data);
       setBlogs(data);
@@ -19,9 +20,9 @@ function App() {
       console.error('Error fetching data:', error);
     }
   };
-
+  
   fetchData();
- },[])
+},[])
 
   const router=createBrowserRouter([
     {
@@ -35,7 +36,6 @@ function App() {
     }
   ])
   return (
-
     <>
 <BlogData.Provider value={blogs}>
 <RouterProvider router={router}>
