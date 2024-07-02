@@ -4,19 +4,19 @@ import './FullBlog.css';
 import { useParams } from 'react-router-dom';
 
   const FullBlogPost = () => {
-    const Blog = useContext(BlogData);
+    const Blogs = useContext(BlogData);
     const [blog, setBlog] = useState(null);
     const { slug } = useParams();
   
     useEffect(() => {
       const fetchBlog = async () => {
-        const index = Blog.findIndex(item => item.id == slug);
+        const index = Blogs.findIndex(item => item.id == slug);
         if (index !== -1) {
-          setBlog(Blog[index]);
+          setBlog(Blogs[index]);
         }
       };
       fetchBlog();
-    }, [Blog, slug]);
+    }, [Blogs, slug]);
   
     if (!blog) {
       return <div>Loading...</div>;
@@ -35,7 +35,8 @@ import { useParams } from 'react-router-dom';
                 <div key={index} className="content">{element}</div>
               ))}
             </div>
-            <div className="authorname">{blog.author.name}</div>
+            <div className='authordetails'>
+            <div className="authorname">{blog.author.name}</div><a href={blog.author.linkedin}><div className='linkedin'><img src="/linkedinicon.png" alt="" /></div></a></div>
           </div>
         </div>
       </>
